@@ -15,21 +15,20 @@ equipo expliquen con sus propias palabras el desarrollo de la práctica, basánd
 preguntas del enunciado para justificar y explicar el código desarrollado. Este vídeo se deberá
 entregar a través de un enlace a Google Drive que se deberá proporcionar junto con enlace al
 repositorio Git.</b>.</p>
-<p> Bla, bla 3
-Elegimos <a href=https://www.emagister.com>Emagister</a>, Bla, bla 2 </p>
+<p> La fuente de datos considerada para la realización de la practica es <a href=https://www.emagister.com>Emagister</a>, Fuente Datos </p>
 <p>Consideramos que la información relevante para desarrollar esta decisión es:<p>
 <ul>
-    <li> Descripción del máster: tipología, duración, metodología, …</li>
-    <li> Precio</li>
-    <li> Entidad</li>
-    <li> Programa</li>
+    <li> Datos Bla, bla …</li>
+    <li> Bla. bla</li>
+    <li> Bla, bla</li>
+    <li> Bla. bla</li>
 </ul>
 
 ![-----------------------------------------------------](https://raw.githubusercontent.com/andreasbm/readme/master/assets/lines/rainbow.png)
 
 <h2> Consideración Generales</h2>
-<p> La estructura de la solución diseñada es modular con el objetivo de simplicar el mantenimiento y el proceso de mejora en futuras versiones.</p>
-<p> Para simplificar la identificaciones de posibles bugs e incidencias en la ejecución asi como para favorecer el desarrollo de mejoras sobre el código propuesto se documenta todo el proceso en los diferentes logs. (Terminal & Fichero )</p>
+<p> Se ha decidido utilizar para el desarrollo de esta practica el lenguaje R.</p>
+<p> La implementación escogida es R Markov para poder documental el proceso</p>
 <p> Los pasos considerados han sido</p>
 <ul>
     <li><b>Generación Archivo Links</b> Extracción informacion Links de los diferentes masters</li>
@@ -39,27 +38,27 @@ Elegimos <a href=https://www.emagister.com>Emagister</a>, Bla, bla 2 </p>
 
 <p> Se han desarrollado dos maneras diferentes de obtención de la informacion de los Masteres:</p>
 <ul>
-    <li><b>MODO SECUENCIAL</b> El acceso a los diferentes links WEB se desarrolla de forma secuencial (Mayor tiempo de ejecución).</li>
-    <li><b>MODO MULTIPROCESO</b> El acceso a los diferentes links WEB se desarrolla de forma paralela (Menor tiempo de ejecución).</li>
+    <li><b>Bla, bla</b> Bla, bla.</li>
+    <li><b>Bla, bla</b> Bla, bla.</li>
 </ul>
 
 ![-----------------------------------------------------](https://raw.githubusercontent.com/andreasbm/readme/master/assets/lines/rainbow.png)
 
 <h2> :floppy_disk: Descripción archivos proyecto</h2>
 
-<p>Este proyecto se ha desarrollado integramente en Python utilizando la herramienta Visual Studio Code. Continene varios archivos en formato notebook, y varios directorios con la siguiente estructura.:</p>
+<p>Este proyecto se ha desarrollado integramente en R utilizando la herramienta RStudio. Continene varios archivos en formato Rmd, y varios directorios con la siguiente estructura.:</p>
 <h4>CODIGOS:</h4>
 <ul>
-  <li><b>PRA01.ipynb</b> - Contiene todo el código Python del WebScraping desarrollado.(Formato Notebook Python)</li>
-  <li><b>loggingUOCPRA01.conf</b> - Archivo Auxiliar de configuración de loggins para el archivo Python anterior. (Formato txt)</li>
-  <li><b>UOCPRA01.log</b> - Archivo auxiliar log en formato .txt resultado de la ejecución del archivo python.</li>
+  <li><b>Tipologia_PRA02.Rmd</b> - Contiene todo el código R del proyecto desarrollado.(Formato R Markov)</li>
+  <li><b>Tipologia_PRA02.html</b> - Salida del archivo anterior en formato Web. (Formato html)</li>
+  <li><b>Tipologia_PRA02.pdf</b> - Archivo auxiliar log en formato .txt resultado de la ejecución del archivo python.</li>
 </ul>
 
-<h4>RESULTADOS:</h4>
+<h4>FUENTES DE DATOS:</h4>
 <ul>
-  <li><b>InfoMaster-07-04-22.xlsx</b> - Contiene la información extraida de la Web en formato (.xlsx).</li>
-  <li><b>InfoMaster-07-04-22.csv</b> - Si existe. Contiene la información extraida de la Web en formato (.csv).</li>
-    <li><b>Datos disponibles en: </b> <a href= https://zenodo.org/record/6425416#.YlBHLchBxPY>Zenodo</a> con DOI 10.5281/zenodo.6425416</li>
+  <li><b>XXXXX</b> - Datos a analizar.</li>
+  <li><b>YYYYY</b> - Datos a analizar..</li>
+  <li><b>Datos disponibles en: </b> <a href= https://zenodo.org/record/6425416#.YlBHLchBxPY>Zenodo</a> con DOI 10.5281/zenodo.6425416</li>
 </ul>
 
 <h4>IMAGENES:</h4>
