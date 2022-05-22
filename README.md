@@ -30,12 +30,12 @@ equipo explicaran el desarrollo de la práctica, basándose en las preguntas del
 <p> La implementación escogida es R Markov para poder documental el proceso</p>
 <p> Los pasos considerados han sido</p>
 <ul>
-    <li><b>Generación Archivo Links</b> Extracción informacion Links de los diferentes masters</li>
-    <li><b>Extracción Información Masters</b> Se lee archivo anterior con listado de links de cada master individual. Se extrae la información de cada uno de los Masters</li>
-    <li><b>Extracción Imagenes</b> Extracción de información en formato grafico. Se trata de los Logos de las diferentes instituciones que ofrecen cursos.</li>
+    <li><b>Selección Fuente Datos</b> Para ello se han analisado diferentes repositorios de fuentes de datos publicas.</li>
+    <li><b>Análisis utilizando R de los datos</b> Se realiza un analisis detallado de la información disponible en el DataSet.</li>
+    <li><b>Construcción informe final</b> Se construye un informe final en formato (html) y (pdf) con los resultados obtenidos..</li>
 </ul>
 
-<p> Se han desarrollado dos maneras diferentes de obtención de la informacion de los Masteres:</p>
+<p> Los principales aprendizajes obtenidos han sido:</p>
 <ul>
     <li><b>Bla, bla</b> Bla, bla.</li>
     <li><b>Bla, bla</b> Bla, bla.</li>
@@ -55,9 +55,9 @@ equipo explicaran el desarrollo de la práctica, basándose en las preguntas del
 
 <h4>FUENTES DE DATOS:</h4>
 <ul>
-  <li><b>XXXXX</b> - Datos a analizar.</li>
-  <li><b>YYYYY</b> - Datos a analizar..</li>
-  <li><b>Datos disponibles en: </b> <a href= https://zenodo.org/record/6425416#.YlBHLchBxPY>Zenodo</a> con DOI 10.5281/zenodo.6425416</li>
+  <li><b>Kaggle Heart Disease Dataset</b> - Datos a analizar.</li>
+
+
 </ul>
 
 <h4>IMAGENES:</h4>
