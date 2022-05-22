@@ -86,7 +86,7 @@ equipo explicaran el desarrollo de la práctica, basándose en las preguntas del
 Agradecemos a los diferentes autores de las siguientes referencias el habernos facilitado el trabajo de desarrollo:
 
 <ul>
-  <li>https://www.kaggle.com/datasets/yasserh/heart-disease-dataset</li>
+  <li><b>Dataset de Kaggle:</b> https://www.kaggle.com/datasets/yasserh/heart-disease-dataset</li>
 
 </ul>
 
