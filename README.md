@@ -74,9 +74,8 @@ equipo explicaran el desarrollo de la práctica, basándose en las preguntas del
 
 <h4>VIDEOS EXPLICATIVOS:</h4>
 <ul>
-  <li><b>Presentación Almudena Caballero Manzanas</b> <a href= https://drive.google.com/file/d/1yzYDhucSoljTRzljLoGkDkt15mEl1Q5v/view?usp=sharing >  - Link Drive UOC</la></li> 
-  
-  <li><b>Presentación Ángel A. Urbina Sánchez</b> <a href= https://drive.google.com/file/d/1Da2KcpkXvfB_MXrfnwwuIWv0LuGIu-rn/view?usp=sharing > - Link Drive UOC</la> </li>
+  <li><b>Presentación Almudena Caballero Manzanas</b> <a href= https://drive.google.com/file/d/1yzYDhucSoljTRzljLoGkDkt15mEl1Q5v/view?usp=sharing >  - Link Drive UOC</li></a> 
+  <li><b>Presentación Ángel A. Urbina Sánchez</b> <a href= https://drive.google.com/file/d/1Da2KcpkXvfB_MXrfnwwuIWv0LuGIu-rn/view?usp=sharing > - Link Drive UOC</a> </li>
 </ul>
 
 ![-----------------------------------------------------](https://raw.githubusercontent.com/andreasbm/readme/master/assets/lines/rainbow.png)
