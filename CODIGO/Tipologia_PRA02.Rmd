@@ -28,10 +28,11 @@ knitr::opts_chunk$set(fig.width=8, fig.height=4)
 library('ggplot2')
 library('scales') # visualización
 library('dplyr') # manipulación datos
-library('kableExtra')
+library('kableExtra') # Visualización de Datos
 ```
 
 ### Descarga datos desde GitHub
+
 ```{r echo=FALSE, message=FALSE, warning=FALSE}
 # Directorio de trabajo actual
 Directorio <- getwd()
@@ -110,6 +111,12 @@ Verificamos la estructura del juego de datos principal. Vemos el número de colu
 # Estructura de los datos
 structure <- str(heart)
 ```
+Nuestro DataSet esta originalmente en:
+
+https://www.kaggle.com/datasets/zhaoyingzhu/heartcsv
+
+Son de caracter publico
+
 Vemos que tenemos **14** variables y **303** registros
 
 Revisamos la descripción de las variables contenidas en el fichero y si los tipos de variables se corresponden con las que hemos cargado. Las organizamos lógicamente para darles sentido y construimos un pequeño diccionario de datos utilizando la documentación auxiliar.
