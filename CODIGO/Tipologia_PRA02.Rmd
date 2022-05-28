@@ -224,15 +224,14 @@ infarto <- c('Yes',
 ### Construcción Dataset Factorizado
 ```{r, eval=TRUE,echo=TRUE}
 
-
 # Cambio valores
-Datos <- heart %>%
+Heart_fact <- heart %>%
     mutate(sex = case_when(sex == 0 ~ 'female',
                            sex == 1  ~ 'male'),
-          cp = case_when(cp == 1 ~ 'typical angina',
-                          cp == 2 ~ 'atypical angina',
-                          cp == 3 ~ 'non-anginal pain',
-                          cp == 4 ~ 'asymptomatic'
+          cp = case_when(cp == 0 ~ 'typical angina',
+                          cp == 1 ~ 'atypical angina',
+                          cp == 2 ~ 'non-anginal pain',
+                          cp == 3 ~ 'asymptomatic'
                           ),
          fbs = case_when(fbs == 0 ~ 'lower than 120mg/ml',
                            fbs == 1 ~ 'greater than 120mg/ml'
@@ -244,26 +243,37 @@ Datos <- heart %>%
          exang = case_when(exang == 0 ~ 'no',
                              exang == 1 ~ 'yes'
                           ),
+         target = case_when(target == 0 ~ FALSE,
+                             target == 1 ~ TRUE
+                          ),     
          slope = case_when(slope == 0 ~ 'upsloping',
                               slope == 1 ~ 'flat',
                               slope == 2 ~ 'downsloping'
                           ),
+        ca = case_when(ca == 0 ~ '0',
+                       ca == 1 ~ '1',
+                       ca == 2 ~ '2',
+                       ca == 3 ~ '3',
+                       ca == 4 ~ '4'
+                          ),
         thal = case_when(thal == 1 ~ 'normal',
                             thal == 2 ~ 'fixed defect',                           
-                            thal == 3 ~ 'reversable defect'
+                            thal == 3 ~ 'reversable defect',
+                            thal == 0 ~ 'Sin Datos'
                           ))
            
 
 # Factorización
-Datos <- Datos %>%
+Heart_fact <- Heart_fact %>%
   mutate(sex = relevel(as.factor(sex), 'female', 'male'),
          cp = relevel(as.factor(cp), 'typical angina', 'atypical angina', 'non-anginal pain', 'asymptomatic'),
          fbs = relevel(as.factor(fbs), 'lower than 120mg/ml', 'greater than 120mg/ml'),
          restecg = relevel(as.factor(restecg), 'normal', 'ST-T wave abnormality', 'left ventiricular hypertrophy'),
          exang = relevel(as.factor(exang), 'no', 'yes'),
          slope = relevel(as.factor(slope), 'upsloping', 'flat', 'downsloping'),
-         thal = relevel(as.factor(thal), 'normal', 'fixed defect', 'reversable defect'
-         )
+         thal = relevel(as.factor(thal), 'normal', 'fixed defect', 'reversable defect'),
+         ca = relevel(as.factor(ca), '0', '1', '2', '3', '4'),       
+         target= relevel(as.factor(target), TRUE, FALSE)         
   )
 ```
 
@@ -274,7 +284,7 @@ Datos <- Datos %>%
 
 ### Comprobacion presencia de NA
 ```{r, eval=TRUE,echo=TRUE}
-datosNA <- colSums(is.na(heart))
+datosNA <- colSums(is.na(Heart_fact))
 print(datosNA)
 ```
 
@@ -282,7 +292,7 @@ No hay valores NA
 
 ### Tabla resumen Valores perdidos
 ```{r echo=TRUE, message=FALSE, warning=FALSE}
-missing_values <- heart %>% summarize_each(funs(sum(is.na(.))/n()))
+missing_values <- Heart_fact %>% summarize_each(funs(sum(is.na(.))/n()))
 
 missing_values <- gather(missing_values, key="caracteristica", value="Perdidos")
 missing_values %>% 
@@ -299,9 +309,76 @@ Se trata de una fuente de datos que no contiene valores NA ni valores perdidos y
 
 ## 3.2. Identifica y gestiona los valores extremos.
 
-```{r echo=TRUE, message=FALSE, warning=FALSE}
+Primero identificamos las columnas numericas
 
-g_caja<-boxplot(heart, col="skyblue", frame.plot=F)
+```{r echo=TRUE, message=FALSE, warning=FALSE}
+Numericos <- Heart_fact %>% 
+  dplyr::select(where(is.numeric))
+
+```
+
+Dibujamos Boxplots
+
+```{r echo=TRUE, message=FALSE, warning=FALSE}
+g_caja<-boxplot(Numericos, col="skyblue", frame.plot=F)
+
+```
+
+Identificacion valores extremos
+
+Variable Age
+```{r echo=TRUE, message=FALSE, warning=FALSE}
+out <- boxplot.stats(Numericos$age)$out
+# valores
+out
+out_ind <- which(Numericos$age %in% c(out))
+# indices
+out_ind
+
+```
+No hay outliers de Age
+
+Variable trestbps
+```{r echo=TRUE, message=FALSE, warning=FALSE}
+out <- boxplot.stats(Numericos$trestbps)$out
+# valores
+out
+out_ind <- which(Numericos$trestbps %in% c(out))
+# valores
+out_ind
+
+```
+
+Variable chol
+```{r echo=TRUE, message=FALSE, warning=FALSE}
+out <- boxplot.stats(Numericos$chol)$out
+# valores
+out
+out_ind <- which(Numericos$chol %in% c(out))
+# valores
+out_ind
+
+```
+
+Variable thalach
+```{r echo=TRUE, message=FALSE, warning=FALSE}
+out <- boxplot.stats(Numericos$thalach)$out
+# valores
+out
+out_ind <- which(Numericos$thalach %in% c(out))
+# valores
+out_ind
+
+```
+
+Variable oldpeak
+```{r echo=TRUE, message=FALSE, warning=FALSE}
+out <- boxplot.stats(Numericos$oldpeak)$out
+# valores
+out
+out_ind <- which(Numericos$oldpeak %in% c(out))
+# valores
+out_ind
 
 ```
 
