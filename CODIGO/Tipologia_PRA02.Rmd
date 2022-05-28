@@ -200,7 +200,7 @@ Procedemos a construir vectores que nos permitan mejorar la identificación de l
 ```{r echo=TRUE, message=FALSE, warning=FALSE}
 sex <- c('female',
          'male')
-cp <- c( 'typical angina',
+cp <- c('typical angina',
          'atypical angina',
          'non-anginal pain',
          'asymptomatic')
@@ -219,8 +219,52 @@ thalassemia <- c('normal',
                  'reversable defect')
 infarto <- c('Yes',
              'No')
+```
+
+### Construcción Dataset Factorizado
+```{r, eval=TRUE,echo=TRUE}
 
 
+# Cambio valores
+Datos <- heart %>%
+    mutate(sex = case_when(sex == 0 ~ 'female',
+                           sex == 1  ~ 'male'),
+          cp = case_when(cp == 1 ~ 'typical angina',
+                          cp == 2 ~ 'atypical angina',
+                          cp == 3 ~ 'non-anginal pain',
+                          cp == 4 ~ 'asymptomatic'
+                          ),
+         fbs = case_when(fbs == 0 ~ 'lower than 120mg/ml',
+                           fbs == 1 ~ 'greater than 120mg/ml'
+                          ),
+         restecg = case_when(restecg == 0 ~ 'normal',   
+                               restecg == 1 ~ 'ST-T wave abnormality', 
+                               restecg == 2 ~ 'left ventiricular hypertrophy'
+           ),
+         exang = case_when(exang == 0 ~ 'no',
+                             exang == 1 ~ 'yes'
+                          ),
+         slope = case_when(slope == 0 ~ 'upsloping',
+                              slope == 1 ~ 'flat',
+                              slope == 2 ~ 'downsloping'
+                          ),
+        thal = case_when(thal == 1 ~ 'normal',
+                            thal == 2 ~ 'fixed defect',                           
+                            thal == 3 ~ 'reversable defect'
+                          ))
+           
+
+# Factorización
+Datos <- Datos %>%
+  mutate(sex = relevel(as.factor(sex), 'female', 'male'),
+         cp = relevel(as.factor(cp), 'typical angina', 'atypical angina', 'non-anginal pain', 'asymptomatic'),
+         fbs = relevel(as.factor(fbs), 'lower than 120mg/ml', 'greater than 120mg/ml'),
+         restecg = relevel(as.factor(restecg), 'normal', 'ST-T wave abnormality', 'left ventiricular hypertrophy'),
+         exang = relevel(as.factor(exang), 'no', 'yes'),
+         slope = relevel(as.factor(slope), 'upsloping', 'flat', 'downsloping'),
+         thal = relevel(as.factor(thal), 'normal', 'fixed defect', 'reversable defect'
+         )
+  )
 ```
 
 
@@ -256,6 +300,8 @@ Se trata de una fuente de datos que no contiene valores NA ni valores perdidos y
 ## 3.2. Identifica y gestiona los valores extremos.
 
 ```{r echo=TRUE, message=FALSE, warning=FALSE}
+
+g_caja<-boxplot(heart, col="skyblue", frame.plot=F)
 
 ```
 
