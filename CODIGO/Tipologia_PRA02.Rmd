@@ -323,6 +323,34 @@ Dibujamos Boxplots
 g_caja<-boxplot(Numericos, col="skyblue", frame.plot=F)
 
 ```
+### Verificación Normalidad
+
+age
+```{r echo=TRUE, message=FALSE, warning=FALSE}
+p<-qplot(sample = age, data = Numericos)+theme_bw()
+p
+```
+trestbps
+```{r echo=TRUE, message=FALSE, warning=FALSE}
+p<-qplot(sample = trestbps, data = Numericos)+theme_bw()
+p
+```
+chol
+```{r echo=TRUE, message=FALSE, warning=FALSE}
+p<-qplot(sample = chol, data = Numericos)+theme_bw()
+p
+```
+thalach
+```{r echo=TRUE, message=FALSE, warning=FALSE}
+p<-qplot(sample = thalach, data = Numericos)+theme_bw()
+p
+```
+oldpeak
+```{r echo=TRUE, message=FALSE, warning=FALSE}
+p<-qplot(sample = oldpeak, data = Numericos)+theme_bw()
+p
+```
+
 
 Identificacion valores extremos
 
