@@ -29,6 +29,13 @@ library('ggplot2')
 library('scales') # visualización
 library('dplyr') # manipulación datos
 library('kableExtra') # Visualización de Datos
+library(data.table)
+library(stringr)
+#library(DT)
+library(tidyr)
+library(corrplot)
+#library(leaflet)
+library(lubridate)
 ```
 
 ### Descarga datos desde GitHub
@@ -111,6 +118,20 @@ Verificamos la estructura del juego de datos principal. Vemos el número de colu
 # Estructura de los datos
 structure <- str(heart)
 ```
+### Tipos de Datos
+
+```{r echo=TRUE, message=FALSE, warning=FALSE}
+sapply(heart, class)
+```
+
+
+### Tamaño Datos
+```{r, eval=TRUE,echo=TRUE}
+dim(heart)
+```
+
+**Resumen Datos**
+
 Nuestro DataSet esta originalmente en:
 
 https://www.kaggle.com/datasets/zhaoyingzhu/heartcsv
@@ -121,48 +142,116 @@ Vemos que tenemos **14** variables y **303** registros
 
 Revisamos la descripción de las variables contenidas en el fichero y si los tipos de variables se corresponden con las que hemos cargado. Las organizamos lógicamente para darles sentido y construimos un pequeño diccionario de datos utilizando la documentación auxiliar.
 
-+ **age**  col_double(),
-+ **sex** col_double(),
-+ **cp** col_double(),
-+ **trestbps** col_double(),
-+ **chol** col_double(),
-+ **fbs** col_double(),
-+ **restecg** col_double(),
-+ **thalach** col_double(),
-+ **exang** col_double(),
-+ **oldpeak**  col_double(),
-+ **slope**  col_double(),
-+ **ca** col_double(),
-+ **thal**  col_double(),
-+ **target**  col_double()
++ **age**  col_double(),                          [Edad Paciente]
++ **sex** col_double(),                           [Sexo Paciente]
+                                                      0 = female
+                                                      1 = male
++ **cp** col_double(),                            [Tipo de Dolor de Pecho]
+                                                      1='typical angina'
+                                                      2 = 'atypical angina'
+                                                      3 = 'non-anginal pain'
+                                                      4 = 'asymptomatic'
++ **trestbps** col_double(),                      [resting_blood_pressure]
++ **chol** col_double(),                          [cholesterol]
++ **fbs** col_double(),                           [fasting_blood_sugar]
+                                                      0='lower than 120mg/ml'
+                                                      1='greater than 120mg/ml'
++ **restecg** col_double(),                       [rest_ecg]
+                                                      0 ='normal'
+                                                      1 ='ST-T wave abnormality'
+                                                      2 ='left ventiricular hypertrophy'
++ **thalach** col_double(),                       [max_heart_rate_achieved]
++ **exang** col_double(),                         [exercise_induced_angina]
+                                                      0 = 'no'
+                                                      1 = 'yes'
++ **oldpeak**  col_double(),                      [st_depression]
++ **slope**  col_double(),                        [st_slope]
+                                                      1 = 'upsloping'
+                                                      2 = 'flat'
+                                                      3 = 'downsloping'
++ **ca** col_double(),                            [num_major_vessels]
++ **thal**  col_double(),                         [thalassemia]
+                                                      1 = 'normal'
+                                                      2 = 'fixed defect'
+                                                      3 = 'reversable defect'
++ **target**  col_double()                        [target]
+                                                      Yes
+                                                      No
+
+**Resumen DataSet**
+
++ **Numero de variables** 	15
++ **Numero de observaciones** 	303
++ **Celdas perdidas** 	6 (0.1%)
++ **Filas duplicadas**  0 (0.0%)
 
 ## 1.1.¿Por qué es importante y qué pregunta/problema pretende responder?
 
-```{r echo=TRUE, message=FALSE, warning=FALSE}
+Este Data set recopila un conjunto de datos clinicos cuyo objetivo es permitir intentar identificar posibles factores que a fectan a la presencia de infartos en personas.
 
-```
+Es importante ya que se trata de un conjunto de datos reales que nos permitir construir modelos para la predicción de este tipo de situaciones que son una de las causas mas frecuentes de fallecimientos en las personas.
 
 # 2. Integración y selección de los datos de interés a analizar. (Puntuación 0.5 ptos)
 
 ### Puede ser el resultado de adicionar diferentes datasets o una subselección útil de los datos originales, en base al objetivo que se quiera conseguir.
 
+Procedemos a construir vectores que nos permitan mejorar la identificación de las variables
+
 ```{r echo=TRUE, message=FALSE, warning=FALSE}
+sex <- c('female',
+         'male')
+cp <- c( 'typical angina',
+         'atypical angina',
+         'non-anginal pain',
+         'asymptomatic')
+fbs <- c('lower than 120mg/ml',
+         'greater than 120mg/ml')
+rest_ecg <- c( 'normal',
+               'ST-T wave abnormality',
+               'left ventiricular hypertrophy')
+exercise_induced_angina <- c( 'yes',
+                              'no')
+st_slope <- c('upsloping',
+              'flat',
+              'downsloping')
+thalassemia <- c('normal',
+                 'fixed defect',
+                 'reversable defect')
+infarto <- c('Yes',
+             'No')
+
 
 ```
+
 
 # 3. Limpieza de los datos. (Puntuación 2 ptos)
 
-```{r echo=TRUE, message=FALSE, warning=FALSE}
+## 3.1. ¿Los datos contienen ceros o elementos vacíos?
 
+### Comprobacion presencia de NA
+```{r, eval=TRUE,echo=TRUE}
+datosNA <- colSums(is.na(heart))
+print(datosNA)
 ```
 
-## 3.1. ¿Los datos contienen ceros o elementos vacíos?
+No hay valores NA
+
+### Tabla resumen Valores perdidos
+```{r echo=TRUE, message=FALSE, warning=FALSE}
+missing_values <- heart %>% summarize_each(funs(sum(is.na(.))/n()))
+
+missing_values <- gather(missing_values, key="caracteristica", value="Perdidos")
+missing_values %>% 
+  ggplot(aes(x=reorder(caracteristica,-Perdidos),y=Perdidos)) +
+  geom_bar(stat="identity",fill="red")+
+  coord_flip()+theme_bw()
+```
+
+No hay valores perdidos
 
 ### Gestiona cada uno de estos casos.
 
-```{r echo=TRUE, message=FALSE, warning=FALSE}
-
-```
+Se trata de una fuente de datos que no contiene valores NA ni valores perdidos ya que procede de datos de una investigacion clinica. ( Asumimos que por tanto que a los valores publicados Kaggle que hemos cogido ya se han realizado los pasos indicados de limpieza)
 
 ## 3.2. Identifica y gestiona los valores extremos.
 
