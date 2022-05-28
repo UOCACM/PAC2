@@ -271,7 +271,7 @@ Heart_fact <- Heart_fact %>%
          restecg = relevel(as.factor(restecg), 'normal', 'ST-T wave abnormality', 'left ventiricular hypertrophy'),
          exang = relevel(as.factor(exang), 'no', 'yes'),
          slope = relevel(as.factor(slope), 'upsloping', 'flat', 'downsloping'),
-         thal = relevel(as.factor(thal), 'normal', 'fixed defect', 'reversable defect'),
+         thal = relevel(as.factor(thal), 'normal', 'fixed defect', 'reversable defect', 'Sin Datos'),
          ca = relevel(as.factor(ca), '0', '1', '2', '3', '4'),       
          target= relevel(as.factor(target), TRUE, FALSE)         
   )
@@ -325,32 +325,62 @@ g_caja<-boxplot(Numericos, col="skyblue", frame.plot=F)
 ```
 ### Verificación Normalidad
 
-age
+Variable age
 ```{r echo=TRUE, message=FALSE, warning=FALSE}
-p<-qplot(sample = age, data = Numericos)+theme_bw()
-p
-```
-trestbps
-```{r echo=TRUE, message=FALSE, warning=FALSE}
-p<-qplot(sample = trestbps, data = Numericos)+theme_bw()
-p
-```
-chol
-```{r echo=TRUE, message=FALSE, warning=FALSE}
-p<-qplot(sample = chol, data = Numericos)+theme_bw()
-p
-```
-thalach
-```{r echo=TRUE, message=FALSE, warning=FALSE}
-p<-qplot(sample = thalach, data = Numericos)+theme_bw()
-p
-```
-oldpeak
-```{r echo=TRUE, message=FALSE, warning=FALSE}
-p<-qplot(sample = oldpeak, data = Numericos)+theme_bw()
-p
+library(car)
+qqPlot(Numericos$age)
 ```
 
+```{r echo=TRUE, message=FALSE, warning=FALSE}
+shapiro.test(Numericos$age)
+
+```
+
+Variable trestbps
+```{r echo=TRUE, message=FALSE, warning=FALSE}
+
+qqPlot(Numericos$trestbps)
+
+```
+
+```{r echo=TRUE, message=FALSE, warning=FALSE}
+
+shapiro.test(Numericos$trestbps)
+
+```
+
+Variable chol
+```{r echo=TRUE, message=FALSE, warning=FALSE}
+qqPlot(Numericos$chol)
+```
+
+```{r echo=TRUE, message=FALSE, warning=FALSE}
+
+shapiro.test(Numericos$chol)
+
+```
+
+Variable thalach
+```{r echo=TRUE, message=FALSE, warning=FALSE}
+qqPlot(Numericos$thalach)
+```
+
+```{r echo=TRUE, message=FALSE, warning=FALSE}
+
+shapiro.test(Numericos$thalach)
+
+```
+
+Variable oldpeak
+```{r echo=TRUE, message=FALSE, warning=FALSE}
+
+qqPlot(Numericos$oldpeak)
+```
+```{r echo=TRUE, message=FALSE, warning=FALSE}
+
+shapiro.test(Numericos$oldpeak)
+
+```
 
 Identificacion valores extremos
 
