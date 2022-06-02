@@ -1,5 +1,8 @@
 ---
-title: "PEC03"
+title: "|
+  ![](UOC.png){width=5in}
+  
+    M2.851 Tipología y ciclo de vida de los datos (aula 2)"
 author: "Angel A. Urbina & Almudena Caballero Manzanas"
 date: '`r format(Sys.Date(),"%e de %B %Y")`'
 output:
@@ -8,6 +11,7 @@ output:
     toc: yes
     toc_depth: 2
   pdf_document: default
+subtitle: Semestre 2022.2, PRA 02
 editor_options: 
   markdown: 
     wrap: 72
