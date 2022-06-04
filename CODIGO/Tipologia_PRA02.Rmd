@@ -40,6 +40,8 @@ library(tidyr)
 library(corrplot)
 #library(leaflet)
 library(lubridate)
+library(grid)
+library(gridExtra)
 ```
 
 ### Descarga datos desde GitHub
@@ -117,7 +119,8 @@ Siguiendo las principales etapas de un proyecto analítico, las diferentes tarea
 
 # 1. Descripción del dataset. (Puntuación 0.5 ptos)
 
-Verificamos la estructura del juego de datos principal. Vemos el número de columnas que tenemos y ejemplos de los contenidos de las filas.
+Verificamos la estructura del juego de datos principal. Vemos el número
+de columnas que tenemos y ejemplos de los contenidos de las filas, así como un primer análisis de los valores (mínimo, máximo, media, mediana, ...) de cada una de las variables.
 ```{r echo=TRUE, message=FALSE, warning=FALSE}
 # Estructura de los datos
 structure <- str(heart)
@@ -126,6 +129,7 @@ structure <- str(heart)
 
 ```{r echo=TRUE, message=FALSE, warning=FALSE}
 sapply(heart, class)
+summary(heart)
 ```
 
 
@@ -191,7 +195,7 @@ Revisamos la descripción de las variables contenidas en el fichero y si los tip
 
 ## 1.1.¿Por qué es importante y qué pregunta/problema pretende responder?
 
-Este Data set recopila un conjunto de datos clinicos cuyo objetivo es permitir intentar identificar posibles factores que a fectan a la presencia de infartos en personas.
+Este Data set recopila un conjunto de datos clinicos cuyo objetivo es permitir intentar identificar posibles factores que afectan a la presencia de infartos en personas.
 
 Es importante ya que se trata de un conjunto de datos reales que nos permitir construir modelos para la predicción de este tipo de situaciones que son una de las causas mas frecuentes de fallecimientos en las personas.
 
@@ -449,8 +453,20 @@ out_ind
 ## 4.1. Selección de los grupos de datos que se quieren analizar/comparar 
 (p. e., si se van a comparar grupos de datos, ¿cuáles son estos grupos y qué tipo de análisis se van a aplicar?)
 
-```{r echo=TRUE, message=FALSE, warning=FALSE}
+Veamos visualmente con más detalle la relación entre sufrir un infarto y alguna de las variables de nuestro dataset.
 
+```{r}
+grid.newpage()
+
+plotbySex<-ggplot(Heart_fact,aes(sex,fill=target))+geom_bar() +labs(x="Sex", y="Disease")+ guides(fill=guide_legend(title=""))+ scale_fill_manual(values=c("black","#008000"))+ggtitle("Disease by Sex")
+plotbycp<-ggplot(Heart_fact,aes(cp,fill=target))+geom_bar() +labs(x="CP", y="Disease")+ guides(fill=guide_legend(title=""))+ scale_fill_manual(values=c("black","#008000"))+ggtitle("Disease by CP")
+plotbyfbs<-ggplot(Heart_fact,aes(fbs,fill=target))+geom_bar() +labs(x="FBS", y="Disease")+ guides(fill=guide_legend(title=""))+ scale_fill_manual(values=c("black","#008000"))+ggtitle("Disease by FBS")
+plotbyreste<-ggplot(Heart_fact,aes(restecg,fill=target))+geom_bar() +labs(x="FBS", y="Disease")+ guides(fill=guide_legend(title=""))+ scale_fill_manual(values=c("black","#008000"))+ggtitle("Disease by Restecg")
+plotbyexang<-ggplot(Heart_fact,aes(exang,fill=target))+geom_bar() +labs(x="FBS", y="Disease")+ guides(fill=guide_legend(title=""))+ scale_fill_manual(values=c("black","#008000"))+ggtitle("Disease by Exang")
+plotbyrslope<-ggplot(Heart_fact,aes(slope,fill=target))+geom_bar() +labs(x="FBS", y="Disease")+ guides(fill=guide_legend(title=""))+ scale_fill_manual(values=c("black","#008000"))+ggtitle("Disease by Slope")
+plotbythal<-ggplot(Heart_fact,aes(thal,fill=target))+geom_bar() +labs(x="FBS", y="Disease")+ guides(fill=guide_legend(title=""))+ scale_fill_manual(values=c("black","#008000"))+ggtitle("Disease by Thal")
+
+grid.arrange(plotbySex,plotbycp,plotbyfbs,plotbyreste,plotbyexang,plotbyrslope,plotbythal,ncol=2)
 ```
 
 ## 4.2. Comprobación de la normalidad y homogeneidad de la varianza.
