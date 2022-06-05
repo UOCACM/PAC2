@@ -453,27 +453,35 @@ out_ind
 ## 4.1. Selección de los grupos de datos que se quieren analizar/comparar 
 (p. e., si se van a comparar grupos de datos, ¿cuáles son estos grupos y qué tipo de análisis se van a aplicar?)
 
-Veamos visualmente con más detalle la relación entre sufrir un infarto y alguna de las variables de nuestro dataset.
+Nuestro objetivo es determinar la probabilidad de sufrir una enfermedad cardiaca. Para ello, veamos en primer lugar, la relación de algunas de las variables con dicha probabilidad.
 
 ```{r}
 grid.newpage()
 
-plotbySex<-ggplot(Heart_fact,aes(sex,fill=target))+geom_bar() +labs(x="Sex", y="Disease")+ guides(fill=guide_legend(title=""))+ scale_fill_manual(values=c("black","#008000"))+ggtitle("Disease by Sex")
-plotbycp<-ggplot(Heart_fact,aes(cp,fill=target))+geom_bar() +labs(x="CP", y="Disease")+ guides(fill=guide_legend(title=""))+ scale_fill_manual(values=c("black","#008000"))+ggtitle("Disease by CP")
-plotbyfbs<-ggplot(Heart_fact,aes(fbs,fill=target))+geom_bar() +labs(x="FBS", y="Disease")+ guides(fill=guide_legend(title=""))+ scale_fill_manual(values=c("black","#008000"))+ggtitle("Disease by FBS")
-plotbyreste<-ggplot(Heart_fact,aes(restecg,fill=target))+geom_bar() +labs(x="FBS", y="Disease")+ guides(fill=guide_legend(title=""))+ scale_fill_manual(values=c("black","#008000"))+ggtitle("Disease by Restecg")
-plotbyexang<-ggplot(Heart_fact,aes(exang,fill=target))+geom_bar() +labs(x="FBS", y="Disease")+ guides(fill=guide_legend(title=""))+ scale_fill_manual(values=c("black","#008000"))+ggtitle("Disease by Exang")
-plotbyrslope<-ggplot(Heart_fact,aes(slope,fill=target))+geom_bar() +labs(x="FBS", y="Disease")+ guides(fill=guide_legend(title=""))+ scale_fill_manual(values=c("black","#008000"))+ggtitle("Disease by Slope")
-plotbythal<-ggplot(Heart_fact,aes(thal,fill=target))+geom_bar() +labs(x="FBS", y="Disease")+ guides(fill=guide_legend(title=""))+ scale_fill_manual(values=c("black","#008000"))+ggtitle("Disease by Thal")
+plotbySex<-ggplot(Heart_fact,aes(sex,fill=target))+geom_bar() +labs(x="Sex", y="Disease")+ guides(fill=guide_legend(title=""))+ scale_fill_manual(values=c("#73EDFF","#000078"))+ggtitle("Disease by Sex")
+plotbycp<-ggplot(Heart_fact,aes(cp,fill=target))+geom_bar() +labs(x="CP", y="Disease")+ guides(fill=guide_legend(title=""))+ scale_fill_manual(values=c("#73EDFF","#000078"))+ggtitle("Disease by CP")
+plotbyfbs<-ggplot(Heart_fact,aes(fbs,fill=target))+geom_bar() +labs(x="FBS", y="Disease")+ guides(fill=guide_legend(title=""))+ scale_fill_manual(values=c("#73EDFF","#000078"))+ggtitle("Disease by FBS")
+plotbyreste<-ggplot(Heart_fact,aes(restecg,fill=target))+geom_bar() +labs(x="FBS", y="Disease")+ guides(fill=guide_legend(title=""))+ scale_fill_manual(values=c("#73EDFF","#000078"))+ggtitle("Disease by Restecg")
+plotbyexang<-ggplot(Heart_fact,aes(exang,fill=target))+geom_bar() +labs(x="FBS", y="Disease")+ guides(fill=guide_legend(title=""))+ scale_fill_manual(values=c("#73EDFF","#000078"))+ggtitle("Disease by Exang")
+plotbyrslope<-ggplot(Heart_fact,aes(slope,fill=target))+geom_bar() +labs(x="FBS", y="Disease")+ guides(fill=guide_legend(title=""))+ scale_fill_manual(values=c("#73EDFF","#000078"))+ggtitle("Disease by Slope")
+plotbythal<-ggplot(Heart_fact,aes(thal,fill=target))+geom_bar() +labs(x="FBS", y="Disease")+ guides(fill=guide_legend(title=""))+ scale_fill_manual(values=c("#73EDFF","#000078"))+ggtitle("Disease by Thal")
 
 grid.arrange(plotbySex,plotbycp,plotbyfbs,plotbyreste,plotbyexang,plotbyrslope,plotbythal,ncol=2)
+
 ```
 
 ## 4.2. Comprobación de la normalidad y homogeneidad de la varianza.
 
-```{r echo=TRUE, message=FALSE, warning=FALSE}
+Revisamos si las variables numéricas están normalizadas con el test de Shapiro-Wilk
 
+```{r echo=TRUE, message=FALSE, warning=FALSE}
+shapiro.test(Heart_fact$trestbps)
+shapiro.test(Heart_fact$chol)
+shapiro.test(Heart_fact$thalach)
+shapiro.test(Heart_fact$oldpeak)
 ```
+
+Puesto que en todos los casos el p-valor es inferior a 0.05 podemos rechazar la hipótesis nula y concluir que las variables no siguen una distribución normal.
 
 ## 4.3. Aplicación de pruebas estadísticas para comparar los grupos de datos. En función de los datos y el objetivo del estudio, aplicar pruebas de contraste de hipótesis, correlaciones, regresiones, etc. Aplicar al menos tres métodos de análisis diferentes.
 
