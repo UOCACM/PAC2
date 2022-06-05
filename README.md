@@ -79,6 +79,6 @@ Agradecemos a los diferentes autores de las siguientes referencias el habernos f
 <ul>
   <li><b>Dataset de Kaggle:</b> https://www.kaggle.com/datasets/yasserh/heart-disease-dataset</li>
   <li><b>R Studio:</b> https://www.rstudio.com/</li>
-  <li><b>Recursos de aprendizaje:</b> SUBIRATS MATÉ, Laia, PÉREZ TRENARD, Diego Oswaldo y CALVO GONZÁLEZ, Mireia. *Introducción a la limpieza y análisis de los datos* [en línea]. UOC 2022. Disponible en: https://materials.campus.uoc.edu/daisy/Materials/PID_00265704/pdf/PID_00265704.pdf</li>
+  <li><b>Recursos de aprendizaje:</b> SUBIRATS MATÉ, Laia, PÉREZ TRENARD, Diego Oswaldo y CALVO GONZÁLEZ, Mireia. <i>Introducción a la limpieza y análisis de los datos</i> [en línea]. UOC 2022. Disponible en: https://materials.campus.uoc.edu/daisy/Materials/PID_00265704/pdf/PID_00265704.pdf</li>
 </ul>
 
