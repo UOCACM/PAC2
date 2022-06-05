@@ -6,11 +6,11 @@ title: "|
 author: "Angel A. Urbina & Almudena Caballero Manzanas"
 date: '`r format(Sys.Date(),"%e de %B %Y")`'
 output:
-  pdf_document: default
   html_document:
     df_print: paged
     toc: yes
     toc_depth: 2
+  pdf_document: default
 subtitle: Semestre 2022.2, PRA 02
 editor_options: 
   markdown: 
@@ -46,7 +46,7 @@ library(gridExtra)
 
 ### Descarga datos desde GitHub
 
-```{r echo=FALSE, message=FALSE, warning=FALSE}
+```{r echo=TRUE, message=FALSE, warning=FALSE}
 # Directorio de trabajo actual
 Directorio <- getwd()
 
@@ -455,7 +455,7 @@ out_ind
 
 Nuestro objetivo es determinar la probabilidad de sufrir una enfermedad cardiaca. Para ello, veamos en primer lugar, la relación de algunas de las variables con dicha probabilidad.
 
-```{r}
+```{r echo=TRUE, message=FALSE, warning=FALSE}
 grid.newpage()
 
 plotbySex<-ggplot(Heart_fact,aes(sex,fill=target))+geom_bar() +labs(x="Sex", y="Disease")+ guides(fill=guide_legend(title=""))+ scale_fill_manual(values=c("#73EDFF","#000078"))+ggtitle("Disease by Sex")
@@ -509,7 +509,7 @@ plot(tabla_thal, col = c("#73EDFF","#000078"), main = "Target vs. Thal")
 Vemos que en algunas de las variables, la distribución es considerablemente diferente. Así, por género, observamos que las mujeres tienen mayor probabilidad de sufrir enfermedades coronarias. Ocurre algo similar con la variable Thal, en la que el valor 'fixed defect' tiene un porcentaje mayor que el resto. 
 Nos planteamos ahora estudiar la correlación entre algunas variables. Como vimos en el apartado anterior, nuestras variables no se ajustan a una distribución normal por lo que aplicaremos la correlación de Spearman.
 
-```{r}
+```{r echo=TRUE, message=FALSE, warning=FALSE}
 cor.test(Heart_fact$chol,Heart_fact$trestbps,method="spearman")
 cor.test(Heart_fact$oldpeak,Heart_fact$trestbps,method="spearman")
 ```
@@ -518,7 +518,7 @@ No se aprecia correlación entre los pares de variables estudiados.
 
 Veamos ahora la regresión logística teniendo en cuenta las dos variables anteriores en los que los porcentajes de enfermedad eran considerablemente diferentes según los valores, sex y thal:
 
-```{r}
+```{r echo=TRUE, message=FALSE, warning=FALSE}
 chol_trest <- glm(target ~ sex + thal, data = Heart_fact,
               family=binomial(logit))
 summary(chol_trest)
@@ -531,7 +531,7 @@ El valor AIC es 334.75, si comparasemos varios modelos, deberemos considerar aqu
 
 Si incorporamos más variables a dicha regresión obtenemos:
 
-```{r}
+```{r echo=TRUE, message=FALSE, warning=FALSE}
 reg <- glm(target ~ sex + thal + chol + fbs + restecg + exang + slope + cp, data = Heart_fact,
               family=binomial(logit))
 summary(reg)
@@ -541,7 +541,7 @@ Observamos que con la inclusión de más variables obtenemos mejores modelos ya 
 
 Continuamos con el estudio de las variables sex y thal, y nos planteamos si hay diferencias significativas entre los valores de la variables thal y el género. Para ello aplicamos el test chi cuadrado:
 
-```{r}
+```{r echo=TRUE, message=FALSE, warning=FALSE}
 rel <- table(Heart_fact$sex,Heart_fact$thal)
 print(rel)
 chisq.test(rel)
