@@ -25,7 +25,7 @@ equipo explicaran el desarrollo de la práctica, basándose en las preguntas del
 
 ![-----------------------------------------------------](https://raw.githubusercontent.com/andreasbm/readme/master/assets/lines/rainbow.png)
 
-<h2> Consideración Generales</h2>
+<h2> Consideraciones Generales</h2>
 <p> Se ha decidido utilizar para el desarrollo de esta practica el lenguaje R.</p>
 <p> La implementación escogida es R Markov para poder documental el proceso</p>
 <p> Los pasos considerados han sido</p>
