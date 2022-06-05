@@ -37,8 +37,9 @@ equipo explicaran el desarrollo de la práctica, basándose en las preguntas del
 
 <p> Los principales aprendizajes obtenidos han sido:</p>
 <ul>
-    <li><b>Bla, bla</b> Bla, bla.</li>
-    <li><b>Bla, bla</b> Bla, bla.</li>
+    <li><b>La Identificación del DataSet a utilizar es una labor compleja</b> que requiere tener una visión holistica del problema.</li>
+    <li>Es necesario para poder realizar esta practica tener asentados los conocimientos estudiados en la asignatura de <b>Estadistica Avanzada</b>.</li>
+    <li><b>La selección del Programa R Studio para la realización de la practica ha sido acertada.</b> Se ha simplificado mucho la generación del documento (.pdf) final.</li>
 </ul>
 
 ![-----------------------------------------------------](https://raw.githubusercontent.com/andreasbm/readme/master/assets/lines/rainbow.png)
@@ -60,18 +61,7 @@ equipo explicaran el desarrollo de la práctica, basándose en las preguntas del
 
 </ul>
 
-<h4>IMAGENES:</h4>
-<ul>
-  <li>Las figuras construidas utilizando R podran almacenarse en este directorio si fuera necesario.</li>
-  <li><b>XXXXXX.jpg</b> - Conjunto de Archivos de Imagenes Descargados (.jpg).</li>
-  <li><b>XXXXXX.png</b> - Conjunto de Archivos de Imagenes Descargados (.png).</li>
-</ul>
 
-<h4>DESCRIPCION:</h4>
-<ul>
-  <li><b>M2851_PRA1.docx</b> - Incluye el contenido de la practica en formato (.docx)</li>
-  <li><b>M2851_PRA1.pdf</b> - Incluye el contenido de la practica en formato (.pdf)</li>
-</ul>
 
 <h4>VIDEOS EXPLICATIVOS:</h4>
 <ul>
@@ -89,5 +79,6 @@ Agradecemos a los diferentes autores de las siguientes referencias el habernos f
 <ul>
   <li><b>Dataset de Kaggle:</b> https://www.kaggle.com/datasets/yasserh/heart-disease-dataset</li>
   <li><b>R Studio:</b> https://www.rstudio.com/</li>
+  <li>Apuntes asignatura: M2.851 - Tipología y ciclo de vida de los datos aula 2. (UOC 2022)</li>
 </ul>
 
