@@ -11,16 +11,16 @@
 <p>El objetivo de esta práctica es la elaboración de un caso práctico orientado a aprender a identificar los datos
 relevantes para un proyecto analítico y usar las herramientas de integración, limpieza, validación y análisis de las mismos.</p>
 <p>Simultaneamente se entregara un vídeo explicativo de la práctica, donde cada uno de los integrantes del 
-equipo explicaran el desarrollo de la práctica, basándose en las preguntas del enunciado de la misma para justificar y explicar el código desarrollado. Este vídeo se entregará a través de un enlace a Google Drive que se deberá proporcionar junto con enlace al ´repositorio Git.</b>.</p>
+equipo explicaran el desarrollo de la práctica, basándose en las preguntas del enunciado de la misma para justificar y explicar el código desarrollado. Este vídeo se entregará a través de un enlace a Google Drive que se deberá proporcionar junto con enlace al repositorio Git.</b>.</p>
 
 <p> Hemos escogido como fuente de datos para la realización de la practica  un Dataset de Kaggle <a href= https://www.kaggle.com/datasets/yasserh/heart-disease-dataset > Heart Disease Dataset </a> </p>
 
 <p>Hemos escogido este Dataset por los siguientes motivos:</p>
 <ul>
-    <li> Fuente pública </li>
-    <li> Tiene al menos un par de dimensiones y un par de medidas</li>
-    <li> Trata un campo que es de nuestro interes</li>
-    <li> Es usable. Viene en formato adecuado</li>
+    <li> Ser una fuente pública sin restricciones de uso.</li>
+    <li> Tener al menos un par de dimensiones y un par de medidas (row: 303  colums: 14) </li>
+    <li> Tratar un campo que es del interes compartido de ambos componentes del grupo. (Dataset de tipo medico)</li>
+    <li> Ser usable. Venir en un formato adecuado para el tratamiento (.csv)</li>
 </ul>
 
 ![-----------------------------------------------------](https://raw.githubusercontent.com/andreasbm/readme/master/assets/lines/rainbow.png)
@@ -30,8 +30,8 @@ equipo explicaran el desarrollo de la práctica, basándose en las preguntas del
 <p> La implementación escogida es R Markov para poder documental el proceso</p>
 <p> Los pasos considerados han sido</p>
 <ul>
-    <li><b>Selección Fuente Datos</b> Para ello se han analisado diferentes repositorios de fuentes de datos publicas.</li>
-    <li><b>Análisis utilizando R de los datos</b> Se realiza un analisis detallado de la información disponible en el DataSet.</li>
+    <li><b>Selección Fuente Datos</b> Para ello se han analizado diferentes repositorios de fuentes de datos publicas. En reunión conjunta se decide escoger la fuente utilizada por presentar caracteristicas más interesantes para la realización posterior de los apartados pedidos de la práctica</li>
+    <li><b>Análisis utilizando R de los datos</b> Se realiza un analisis detallado de la información disponible en el DataSet. La decisión de utilización del lenguage R para el analisis se tomo en base que en Kaggle no se habia analizado de esa forma.</li>
     <li><b>Construcción informe final</b> Se construye un informe final en formato (html) y (pdf) con los resultados obtenidos..</li>
 </ul>
 
@@ -62,6 +62,7 @@ equipo explicaran el desarrollo de la práctica, basándose en las preguntas del
 
 <h4>IMAGENES:</h4>
 <ul>
+  <li>Las figuras construidas utilizando R podran almacenarse en este directorio si fuera necesario.</li>
   <li><b>XXXXXX.jpg</b> - Conjunto de Archivos de Imagenes Descargados (.jpg).</li>
   <li><b>XXXXXX.png</b> - Conjunto de Archivos de Imagenes Descargados (.png).</li>
 </ul>
@@ -87,6 +88,6 @@ Agradecemos a los diferentes autores de las siguientes referencias el habernos f
 
 <ul>
   <li><b>Dataset de Kaggle:</b> https://www.kaggle.com/datasets/yasserh/heart-disease-dataset</li>
-
+  <li><b>R Studio:</b> https://www.rstudio.com/</li>
 </ul>
 
