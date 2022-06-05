@@ -6,11 +6,11 @@ title: "|
 author: "Angel A. Urbina & Almudena Caballero Manzanas"
 date: '`r format(Sys.Date(),"%e de %B %Y")`'
 output:
+  pdf_document: default
   html_document:
     df_print: paged
     toc: yes
     toc_depth: 2
-  pdf_document: default
 subtitle: Semestre 2022.2, PRA 02
 editor_options: 
   markdown: 
@@ -565,29 +565,3 @@ Hemos visto que la variable thal se distribuye de manera diferente según el gé
 # 7 Código: (Puntuación 2 ptos) Hay que adjuntar el código, preferiblemente en R, con el que se ha realizado la limpieza, análisis y representación de los datos.
 Si lo preferís, también podéis trabajar en Python.
 
-```{r echo=TRUE, message=FALSE, warning=FALSE}
-
-```
-
-### Ejemplo codigo Código que puede servir de referencia https://www.kaggle.com/code/rtatman/getting-started-in-r-load-data-into-r
-
-
-
-```{r echo=TRUE, message=FALSE, warning=FALSE}
-
-```
-
-```{r echo=TRUE, message=FALSE, warning=FALSE}
-
-```
-
-```{r echo=TRUE, message=FALSE, warning=FALSE}
-
-```
-
-```{r echo=TRUE, message=FALSE, warning=FALSE}
-
-```
-
-
-Note that the `echo = FALSE` parameter was added to the code chunk to prevent printing of the R code that generated the plot.
