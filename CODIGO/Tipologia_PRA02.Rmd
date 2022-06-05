@@ -485,9 +485,70 @@ Puesto que en todos los casos el p-valor es inferior a 0.05 podemos rechazar la 
 
 ## 4.3. Aplicación de pruebas estadísticas para comparar los grupos de datos. En función de los datos y el objetivo del estudio, aplicar pruebas de contraste de hipótesis, correlaciones, regresiones, etc. Aplicar al menos tres métodos de análisis diferentes.
 
+Veamos a continuación cómo se distribuye el target según las diferentes variables
+
 ```{r echo=TRUE, message=FALSE, warning=FALSE}
+tabla_sex <- table(Heart_fact$sex,Heart_fact$target)
+tabla_cp <- table(Heart_fact$cp,Heart_fact$target)
+tabla_fbs <- table(Heart_fact$fbs,Heart_fact$target)
+tabla_restecg <- table(Heart_fact$restecg,Heart_fact$target)
+tabla_slope <- table(Heart_fact$slope,Heart_fact$target)
+tabla_thal <- table(Heart_fact$thal,Heart_fact$target)
+
+
+grid.newpage()
+plot(tabla_sex, col = c("#73EDFF","#000078"), main = "Target vs. Sex")
+plot(tabla_cp, col = c("#73EDFF","#000078"), main = "Target vs. CP")
+plot(tabla_fbs, col = c("#73EDFF","#000078"), main = "Target vs. FBS")
+plot(tabla_restecg, col = c("#73EDFF","#000078"), main = "Target vs. Restecg")
+plot(tabla_slope, col = c("#73EDFF","#000078"), main = "Target vs. Slope")
+plot(tabla_thal, col = c("#73EDFF","#000078"), main = "Target vs. Thal")
 
 ```
+
+Vemos que en algunas de las variables, la distribución es considerablemente diferente. Así, por género, observamos que las mujeres tienen mayor probabilidad de sufrir enfermedades coronarias. Ocurre algo similar con la variable Thal, en la que el valor 'fixed defect' tiene un porcentaje mayor que el resto. 
+Nos planteamos ahora estudiar la correlación entre algunas variables. Como vimos en el apartado anterior, nuestras variables no se ajustan a una distribución normal por lo que aplicaremos la correlación de Spearman.
+
+```{r}
+cor.test(Heart_fact$chol,Heart_fact$trestbps,method="spearman")
+cor.test(Heart_fact$oldpeak,Heart_fact$trestbps,method="spearman")
+```
+
+No se aprecia correlación entre los pares de variables estudiados.
+
+Veamos ahora la regresión logística teniendo en cuenta las dos variables anteriores en los que los porcentajes de enfermedad eran considerablemente diferentes según los valores, sex y thal:
+
+```{r}
+chol_trest <- glm(target ~ sex + thal, data = Heart_fact,
+              family=binomial(logit))
+summary(chol_trest)
+
+```
+
+Observamos que, a excepción del valor 'fixed defect' de la variable thal, los valores no son significativos.
+
+El valor AIC es 334.75, si comparasemos varios modelos, deberemos considerar aquel con un valor AIC inferior.
+
+Si incorporamos más variables a dicha regresión obtenemos:
+
+```{r}
+reg <- glm(target ~ sex + thal + chol + fbs + restecg + exang + slope + cp, data = Heart_fact,
+              family=binomial(logit))
+summary(reg)
+```
+
+Observamos que con la inclusión de más variables obtenemos mejores modelos ya que el nuevo AIC toma como valor 268.75
+
+Continuamos con el estudio de las variables sex y thal, y nos planteamos si hay diferencias significativas entre los valores de la variables thal y el género. Para ello aplicamos el test chi cuadrado:
+
+```{r}
+rel <- table(Heart_fact$sex,Heart_fact$thal)
+print(rel)
+chisq.test(rel)
+
+```
+
+Vemos que efectivamente hombres y mujeres tienen diferente distribución de la variable thal
 
 # 5 Representación de los resultados a partir de tablas y gráficas. (Puntuación 2 ptos) Este apartado se puede responder a lo largo de la práctica, sin necesidad de concentrar todas las representaciones en este punto de la práctica.
 
@@ -497,9 +558,9 @@ Puesto que en todos los casos el p-valor es inferior a 0.05 podemos rechazar la 
 
 # 6 Resolución del problema. (Puntuación 0.5 ptos) A partir de los resultados obtenidos, ¿cuáles son las conclusiones? ¿Los resultados permiten responder al problema?
 
-```{r echo=TRUE, message=FALSE, warning=FALSE}
+A partir del dataset considerado, hemos tratado los datos y hecho un estudio de cada una de las variables. A su vez, hemos relacionado cada una de éstas con la probabilidad de sufrir alguna enfermedad coronaria obteniendo datos interesantes con las variables sex y thal.
 
-```
+Hemos visto que la variable thal se distribuye de manera diferente según el género y que el valor 'fixed defect' toma un caracter significativo por lo que podría considerarse una variable importante a la hora de establecer futuras predicciones.
 
 # 7 Código: (Puntuación 2 ptos) Hay que adjuntar el código, preferiblemente en R, con el que se ha realizado la limpieza, análisis y representación de los datos.
 Si lo preferís, también podéis trabajar en Python.
