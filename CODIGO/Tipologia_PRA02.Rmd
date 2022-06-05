@@ -331,64 +331,6 @@ Dibujamos Boxplots
 g_caja<-boxplot(Numericos, col="skyblue", frame.plot=F)
 
 ```
-### Verificación Normalidad
-
-Variable age
-```{r echo=TRUE, message=FALSE, warning=FALSE}
-library(car)
-qqPlot(Numericos$age)
-```
-
-```{r echo=TRUE, message=FALSE, warning=FALSE}
-shapiro.test(Numericos$age)
-
-```
-
-Variable trestbps
-```{r echo=TRUE, message=FALSE, warning=FALSE}
-
-qqPlot(Numericos$trestbps)
-
-```
-
-```{r echo=TRUE, message=FALSE, warning=FALSE}
-
-shapiro.test(Numericos$trestbps)
-
-```
-
-Variable chol
-```{r echo=TRUE, message=FALSE, warning=FALSE}
-qqPlot(Numericos$chol)
-```
-
-```{r echo=TRUE, message=FALSE, warning=FALSE}
-
-shapiro.test(Numericos$chol)
-
-```
-
-Variable thalach
-```{r echo=TRUE, message=FALSE, warning=FALSE}
-qqPlot(Numericos$thalach)
-```
-
-```{r echo=TRUE, message=FALSE, warning=FALSE}
-
-shapiro.test(Numericos$thalach)
-
-```
-
-Variable oldpeak
-```{r echo=TRUE, message=FALSE, warning=FALSE}
-
-qqPlot(Numericos$oldpeak)
-```
-```{r echo=TRUE, message=FALSE, warning=FALSE}
-
-shapiro.test(Numericos$oldpeak)
-
-```
 
 Identificacion valores extremos
 
@@ -474,11 +416,61 @@ grid.arrange(plotbySex,plotbycp,plotbyfbs,plotbyreste,plotbyexang,plotbyrslope,p
 
 Revisamos si las variables numéricas están normalizadas con el test de Shapiro-Wilk
 
+Variable age
 ```{r echo=TRUE, message=FALSE, warning=FALSE}
-shapiro.test(Heart_fact$trestbps)
-shapiro.test(Heart_fact$chol)
-shapiro.test(Heart_fact$thalach)
-shapiro.test(Heart_fact$oldpeak)
+library(car)
+qqPlot(Numericos$age)
+```
+
+```{r echo=TRUE, message=FALSE, warning=FALSE}
+shapiro.test(Numericos$age)
+
+```
+
+Variable trestbps
+```{r echo=TRUE, message=FALSE, warning=FALSE}
+
+qqPlot(Numericos$trestbps)
+
+```
+
+```{r echo=TRUE, message=FALSE, warning=FALSE}
+
+shapiro.test(Numericos$trestbps)
+
+```
+
+Variable chol
+```{r echo=TRUE, message=FALSE, warning=FALSE}
+qqPlot(Numericos$chol)
+```
+
+```{r echo=TRUE, message=FALSE, warning=FALSE}
+
+shapiro.test(Numericos$chol)
+
+```
+
+Variable thalach
+```{r echo=TRUE, message=FALSE, warning=FALSE}
+qqPlot(Numericos$thalach)
+```
+
+```{r echo=TRUE, message=FALSE, warning=FALSE}
+
+shapiro.test(Numericos$thalach)
+
+```
+
+Variable oldpeak
+```{r echo=TRUE, message=FALSE, warning=FALSE}
+
+qqPlot(Numericos$oldpeak)
+```
+```{r echo=TRUE, message=FALSE, warning=FALSE}
+
+shapiro.test(Numericos$oldpeak)
+
 ```
 
 Puesto que en todos los casos el p-valor es inferior a 0.05 podemos rechazar la hipótesis nula y concluir que las variables no siguen una distribución normal.
@@ -552,9 +544,7 @@ Vemos que efectivamente hombres y mujeres tienen diferente distribución de la v
 
 # 5 Representación de los resultados a partir de tablas y gráficas. (Puntuación 2 ptos) Este apartado se puede responder a lo largo de la práctica, sin necesidad de concentrar todas las representaciones en este punto de la práctica.
 
-```{r echo=TRUE, message=FALSE, warning=FALSE}
-
-```
+A lo largo del documento hemos ido representado los resultados de cada apartado.
 
 # 6 Resolución del problema. (Puntuación 0.5 ptos) A partir de los resultados obtenidos, ¿cuáles son las conclusiones? ¿Los resultados permiten responder al problema?
 
