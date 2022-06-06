@@ -42,6 +42,9 @@ library(corrplot)
 library(lubridate)
 library(grid)
 library(gridExtra)
+
+install.packages("devtools")
+devtools::install_github("cardiomoon/ggiraphExtra")
 ```
 
 ### Descarga datos desde GitHub
@@ -124,12 +127,17 @@ de columnas que tenemos y ejemplos de los contenidos de las filas, así como un 
 ```{r echo=TRUE, message=FALSE, warning=FALSE}
 # Estructura de los datos
 structure <- str(heart)
+
 ```
 ### Tipos de Datos
 
 ```{r echo=TRUE, message=FALSE, warning=FALSE}
 sapply(heart, class)
+```
+### Resumen estadistico Datos
+```{r echo=TRUE, message=FALSE, warning=FALSE}
 summary(heart)
+
 ```
 
 
@@ -283,6 +291,11 @@ Heart_fact <- Heart_fact %>%
          ca = relevel(as.factor(ca), '0', '1', '2', '3', '4'),       
          target= relevel(as.factor(target), TRUE, FALSE)         
   )
+
+# Visualización Primeros 3 datos de Heart_fact
+kable(head(Heart_fact, 3)) %>% 
+  kable_styling(full_width = FALSE)
+
 ```
 
 
@@ -293,7 +306,10 @@ Heart_fact <- Heart_fact %>%
 ### Comprobacion presencia de NA
 ```{r, eval=TRUE,echo=TRUE}
 datosNA <- colSums(is.na(Heart_fact))
-print(datosNA)
+
+# Visualización Datos
+kable(datosNA) %>% 
+  kable_styling(full_width = FALSE)
 ```
 
 No hay valores NA
@@ -323,6 +339,10 @@ Primero identificamos las columnas numericas
 Numericos <- Heart_fact %>% 
   dplyr::select(where(is.numeric))
 
+# Visualización Nombre columnas
+kable(names(Numericos)) %>% 
+  kable_styling(full_width = FALSE)
+
 ```
 
 Dibujamos Boxplots
@@ -332,9 +352,9 @@ g_caja<-boxplot(Numericos, col="skyblue", frame.plot=F)
 
 ```
 
-Identificacion valores extremos
+### Identificacion valores extremos
 
-Variable Age
+Variable **Age**
 ```{r echo=TRUE, message=FALSE, warning=FALSE}
 out <- boxplot.stats(Numericos$age)$out
 # valores
@@ -346,7 +366,7 @@ out_ind
 ```
 No hay outliers de Age
 
-Variable trestbps
+Variable **trestbps**
 ```{r echo=TRUE, message=FALSE, warning=FALSE}
 out <- boxplot.stats(Numericos$trestbps)$out
 # valores
@@ -357,7 +377,7 @@ out_ind
 
 ```
 
-Variable chol
+Variable **chol**
 ```{r echo=TRUE, message=FALSE, warning=FALSE}
 out <- boxplot.stats(Numericos$chol)$out
 # valores
@@ -368,7 +388,7 @@ out_ind
 
 ```
 
-Variable thalach
+Variable **thalach**
 ```{r echo=TRUE, message=FALSE, warning=FALSE}
 out <- boxplot.stats(Numericos$thalach)$out
 # valores
@@ -379,7 +399,7 @@ out_ind
 
 ```
 
-Variable oldpeak
+Variable **oldpeak**
 ```{r echo=TRUE, message=FALSE, warning=FALSE}
 out <- boxplot.stats(Numericos$oldpeak)$out
 # valores
@@ -416,7 +436,7 @@ grid.arrange(plotbySex,plotbycp,plotbyfbs,plotbyreste,plotbyexang,plotbyrslope,p
 
 Revisamos si las variables numéricas están normalizadas con el test de Shapiro-Wilk
 
-Variable age
+Variable **age**
 ```{r echo=TRUE, message=FALSE, warning=FALSE}
 library(car)
 qqPlot(Numericos$age)
@@ -427,7 +447,7 @@ shapiro.test(Numericos$age)
 
 ```
 
-Variable trestbps
+Variable **trestbps**
 ```{r echo=TRUE, message=FALSE, warning=FALSE}
 
 qqPlot(Numericos$trestbps)
@@ -440,7 +460,7 @@ shapiro.test(Numericos$trestbps)
 
 ```
 
-Variable chol
+Variable **chol**
 ```{r echo=TRUE, message=FALSE, warning=FALSE}
 qqPlot(Numericos$chol)
 ```
@@ -451,7 +471,7 @@ shapiro.test(Numericos$chol)
 
 ```
 
-Variable thalach
+Variable **thalach**
 ```{r echo=TRUE, message=FALSE, warning=FALSE}
 qqPlot(Numericos$thalach)
 ```
@@ -462,7 +482,7 @@ shapiro.test(Numericos$thalach)
 
 ```
 
-Variable oldpeak
+Variable **oldpeak**
 ```{r echo=TRUE, message=FALSE, warning=FALSE}
 
 qqPlot(Numericos$oldpeak)
@@ -473,9 +493,10 @@ shapiro.test(Numericos$oldpeak)
 
 ```
 
-Puesto que en todos los casos el p-valor es inferior a 0.05 podemos rechazar la hipótesis nula y concluir que las variables no siguen una distribución normal.
+Puesto que en todos los casos el p-valor es inferior a 0.05 podemos rechazar la hipótesis nula y concluir que **las variables no siguen una distribución normal.**
 
-## 4.3. Aplicación de pruebas estadísticas para comparar los grupos de datos. En función de los datos y el objetivo del estudio, aplicar pruebas de contraste de hipótesis, correlaciones, regresiones, etc. Aplicar al menos tres métodos de análisis diferentes.
+## 4.3. Aplicación de pruebas estadísticas para comparar los grupos de datos.
+En función de los datos y el objetivo del estudio, aplicar pruebas de contraste de hipótesis, correlaciones, regresiones, etc. Aplicar al menos tres métodos de análisis diferentes.
 
 Veamos a continuación cómo se distribuye el target según las diferentes variables
 
@@ -501,12 +522,24 @@ plot(tabla_thal, col = c("#73EDFF","#000078"), main = "Target vs. Thal")
 Vemos que en algunas de las variables, la distribución es considerablemente diferente. Así, por género, observamos que las mujeres tienen mayor probabilidad de sufrir enfermedades coronarias. Ocurre algo similar con la variable Thal, en la que el valor 'fixed defect' tiene un porcentaje mayor que el resto. 
 Nos planteamos ahora estudiar la correlación entre algunas variables. Como vimos en el apartado anterior, nuestras variables no se ajustan a una distribución normal por lo que aplicaremos la correlación de Spearman.
 
+### Visualización de correlaciones entre variables numericas
+```{r echo=TRUE, message=FALSE, warning=FALSE}
+library(corrplot)
+
+M<-cor(Numericos)
+head(round(M,2))
+```
+
+```{r echo=TRUE, message=FALSE, warning=FALSE}
+corrplot(M, type="upper", order="hclust", tl.col="black", tl.srt=45)
+```
+
 ```{r echo=TRUE, message=FALSE, warning=FALSE}
 cor.test(Heart_fact$chol,Heart_fact$trestbps,method="spearman")
 cor.test(Heart_fact$oldpeak,Heart_fact$trestbps,method="spearman")
 ```
 
-No se aprecia correlación entre los pares de variables estudiados.
+No se aprecia correlación significativa entre los pares de variables estudiados.
 
 Veamos ahora la regresión logística teniendo en cuenta las dos variables anteriores en los que los porcentajes de enfermedad eran considerablemente diferentes según los valores, sex y thal:
 
@@ -521,6 +554,21 @@ Observamos que, a excepción del valor 'fixed defect' de la variable thal, los v
 
 El valor AIC es 334.75, si comparasemos varios modelos, deberemos considerar aquel con un valor AIC inferior.
 
+### Analisis de varianza variables
+```{r echo=TRUE, message=FALSE, warning=FALSE}
+library(car)
+
+Anova(chol_trest, type="II", test="Wald")
+```
+
+### Dibujo de residuos del modelo
+
+```{r echo=TRUE, message=FALSE, warning=FALSE}
+
+plot(fitted(chol_trest),
+     rstandard(chol_trest))
+```
+
 Si incorporamos más variables a dicha regresión obtenemos:
 
 ```{r echo=TRUE, message=FALSE, warning=FALSE}
@@ -530,6 +578,21 @@ summary(reg)
 ```
 
 Observamos que con la inclusión de más variables obtenemos mejores modelos ya que el nuevo AIC toma como valor 268.75
+
+### Analisis de varianza variables
+```{r echo=TRUE, message=FALSE, warning=FALSE}
+library(car)
+
+Anova(reg, type="II", test="Wald")
+```
+
+### Dibujo de residuos del modelo
+
+```{r echo=TRUE, message=FALSE, warning=FALSE}
+
+plot(fitted(reg),
+     rstandard(reg))
+```
 
 Continuamos con el estudio de las variables sex y thal, y nos planteamos si hay diferencias significativas entre los valores de la variables thal y el género. Para ello aplicamos el test chi cuadrado:
 
@@ -542,16 +605,29 @@ chisq.test(rel)
 
 Vemos que efectivamente hombres y mujeres tienen diferente distribución de la variable thal
 
-# 5 Representación de los resultados a partir de tablas y gráficas. (Puntuación 2 ptos) Este apartado se puede responder a lo largo de la práctica, sin necesidad de concentrar todas las representaciones en este punto de la práctica.
+# 5 Representación de los resultados a partir de tablas y gráficas. (Puntuación 2 ptos)
+Este apartado se puede responder a lo largo de la práctica, sin necesidad de concentrar todas las representaciones en este punto de la práctica.
 
 A lo largo del documento hemos ido representado los resultados de cada apartado.
 
-# 6 Resolución del problema. (Puntuación 0.5 ptos) A partir de los resultados obtenidos, ¿cuáles son las conclusiones? ¿Los resultados permiten responder al problema?
+# 6 Resolución del problema. (Puntuación 0.5 ptos)
+A partir de los resultados obtenidos, ¿cuáles son las conclusiones? ¿Los resultados permiten responder al problema?
 
 A partir del dataset considerado, hemos tratado los datos y hecho un estudio de cada una de las variables. A su vez, hemos relacionado cada una de éstas con la probabilidad de sufrir alguna enfermedad coronaria obteniendo datos interesantes con las variables sex y thal.
 
 Hemos visto que la variable thal se distribuye de manera diferente según el género y que el valor 'fixed defect' toma un caracter significativo por lo que podría considerarse una variable importante a la hora de establecer futuras predicciones.
 
-# 7 Código: (Puntuación 2 ptos) Hay que adjuntar el código, preferiblemente en R, con el que se ha realizado la limpieza, análisis y representación de los datos.
-Si lo preferís, también podéis trabajar en Python.
+# 7 Código: (Puntuación 2 ptos)
+Hay que adjuntar el código, preferiblemente en R, con el que se ha realizado la limpieza, análisis y representación de los datos.
+
+# Contribuciones Proyecto
+
+| Contribuciones | Firma | (Si/No) |
+|-------|-------------|----|
+| Investigación previa | Almudena Caballero | SI |
+| Investigación previa | Angel A. Urbina | SI |
+| Redacción de las respuestas | Almudena Caballero | SI |
+| Redacción de las respuestas | Angel A. Urbina | SI |
+| Desarrollo código | Almudena Caballero | SI |
+| Desarrollo código | Angel A. Urbina | SI |
 
