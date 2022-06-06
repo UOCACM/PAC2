@@ -25,7 +25,7 @@ equipo explicaran el desarrollo de la práctica, basándose en las preguntas del
 
 ![-----------------------------------------------------](https://raw.githubusercontent.com/andreasbm/readme/master/assets/lines/rainbow.png)
 
-<h2> Consideraciones Generales</h2>
+<h2> Consideración Generales</h2>
 <p> Se ha decidido utilizar para el desarrollo de esta practica el lenguaje R.</p>
 <p> La implementación escogida es R Markov para poder documental el proceso</p>
 <p> Los pasos considerados han sido</p>
@@ -46,12 +46,12 @@ equipo explicaran el desarrollo de la práctica, basándose en las preguntas del
 
 <h2> :floppy_disk: Descripción archivos proyecto</h2>
 
-<p>Este proyecto se ha desarrollado integramente en R utilizando la herramienta RStudio. Continene varios archivos en formato Rmd, y varios directorios con la siguiente estructura.:</p>
+<p>Este proyecto se ha desarrollado integramente en R utilizando la herramienta RStudio. Continene el codigo en formato Rmd, los informes finales en formato (.html, .pdf) en varios directorios con la siguiente estructura.:</p>
 <h4>CODIGOS:</h4>
 <ul>
   <li><b>Tipologia_PRA02.Rmd</b> - Contiene todo el código R del proyecto desarrollado.(Formato R Markov)</li>
   <li><b>Tipologia_PRA02.html</b> - Salida del archivo anterior en formato Web. (Formato html)</li>
-  <li><b>Tipologia_PRA02.pdf</b> - Archivo auxiliar log en formato .txt resultado de la ejecución del archivo python.</li>
+  <li><b>Tipologia_PRA02.pdf</b> - Salida del archivo anterior en formato visualizable. (Formato pdf).</li>
 </ul>
 
 <h4>FUENTES DE DATOS:</h4>
@@ -61,7 +61,11 @@ equipo explicaran el desarrollo de la práctica, basándose en las preguntas del
 
 </ul>
 
-
+<h4>INFORME FINAL:</h4>
+<ul>
+  <li><b>Tipologia_PRA02.html</b> - Informe final en formato Web. (Formato html)</li>
+  <li><b>Tipologia_PRA02.pdf</b> - Informe final en formato visualizable. (Formato pdf).</li>
+</ul>
 
 <h4>VIDEOS EXPLICATIVOS:</h4>
 <ul>
@@ -79,6 +83,6 @@ Agradecemos a los diferentes autores de las siguientes referencias el habernos f
 <ul>
   <li><b>Dataset de Kaggle:</b> https://www.kaggle.com/datasets/yasserh/heart-disease-dataset</li>
   <li><b>R Studio:</b> https://www.rstudio.com/</li>
-  <li><b>Recursos de aprendizaje:</b> SUBIRATS MATÉ, Laia, PÉREZ TRENARD, Diego Oswaldo y CALVO GONZÁLEZ, Mireia. <i>Introducción a la limpieza y análisis de los datos</i> [en línea]. UOC 2022. Disponible en: https://materials.campus.uoc.edu/daisy/Materials/PID_00265704/pdf/PID_00265704.pdf</li>
+  <li>Apuntes asignatura: M2.851 - Tipología y ciclo de vida de los datos aula 2. (UOC 2022)</li>
 </ul>
 
