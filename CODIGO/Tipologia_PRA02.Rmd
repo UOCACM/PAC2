@@ -6,11 +6,11 @@ title: "|
 author: "Angel A. Urbina & Almudena Caballero Manzanas"
 date: '`r format(Sys.Date(),"%e de %B %Y")`'
 output:
-  pdf_document: default
   html_document:
     df_print: paged
     toc: yes
     toc_depth: 2
+  pdf_document: default
 subtitle: Semestre 2022.2, PRA 02
 editor_options: 
   markdown: 
@@ -307,6 +307,12 @@ kable(head(Heart_fact, 3)) %>%
 
 ```
 
+### Grabacion Datos PREPROCESADOS
+```{r, eval=TRUE,echo=TRUE}
+
+# Punto y coma como separador y coma como separador decimal sin indices
+write.csv2(Heart_fact, "heart_PROCESADO.csv", row.names = FALSE)
+```
 
 # 3. Limpieza de los datos. (Puntuación 2 ptos)
 
