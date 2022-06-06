@@ -17,6 +17,17 @@ editor_options:
     wrap: 72
 ---
 
+# Contribuciones Proyecto
+
+| Contribuciones | Firma | (Si/No) |
+|-------|-------------|----|
+| Investigación previa | Almudena Caballero | SI |
+| Investigación previa | Angel A. Urbina | SI |
+| Redacción de las respuestas | Almudena Caballero | SI |
+| Redacción de las respuestas | Angel A. Urbina | SI |
+| Desarrollo código | Almudena Caballero | SI |
+| Desarrollo código | Angel A. Urbina | SI |
+
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = FALSE)
 knitr::opts_chunk$set(fig.width=8, fig.height=4) 
@@ -43,8 +54,6 @@ library(lubridate)
 library(grid)
 library(gridExtra)
 
-install.packages("devtools")
-devtools::install_github("cardiomoon/ggiraphExtra")
 ```
 
 ### Descarga datos desde GitHub
@@ -541,6 +550,7 @@ cor.test(Heart_fact$oldpeak,Heart_fact$trestbps,method="spearman")
 
 No se aprecia correlación significativa entre los pares de variables estudiados.
 
+### Regresion Logistica (con dos variables)
 Veamos ahora la regresión logística teniendo en cuenta las dos variables anteriores en los que los porcentajes de enfermedad eran considerablemente diferentes según los valores, sex y thal:
 
 ```{r echo=TRUE, message=FALSE, warning=FALSE}
@@ -569,6 +579,8 @@ plot(fitted(chol_trest),
      rstandard(chol_trest))
 ```
 
+
+### Correlación Logistica con más valores
 Si incorporamos más variables a dicha regresión obtenemos:
 
 ```{r echo=TRUE, message=FALSE, warning=FALSE}
@@ -594,6 +606,7 @@ plot(fitted(reg),
      rstandard(reg))
 ```
 
+### Analisis posibles diferencias significativas entre thai y genero
 Continuamos con el estudio de las variables sex y thal, y nos planteamos si hay diferencias significativas entre los valores de la variables thal y el género. Para ello aplicamos el test chi cuadrado:
 
 ```{r echo=TRUE, message=FALSE, warning=FALSE}
@@ -603,7 +616,7 @@ chisq.test(rel)
 
 ```
 
-Vemos que efectivamente hombres y mujeres tienen diferente distribución de la variable thal
+Vemos que efectivamente **hombres y mujeres tienen diferente distribución de la variable thal**
 
 # 5 Representación de los resultados a partir de tablas y gráficas. (Puntuación 2 ptos)
 Este apartado se puede responder a lo largo de la práctica, sin necesidad de concentrar todas las representaciones en este punto de la práctica.
@@ -613,21 +626,16 @@ A lo largo del documento hemos ido representado los resultados de cada apartado.
 # 6 Resolución del problema. (Puntuación 0.5 ptos)
 A partir de los resultados obtenidos, ¿cuáles son las conclusiones? ¿Los resultados permiten responder al problema?
 
-A partir del dataset considerado, hemos tratado los datos y hecho un estudio de cada una de las variables. A su vez, hemos relacionado cada una de éstas con la probabilidad de sufrir alguna enfermedad coronaria obteniendo datos interesantes con las variables sex y thal.
+A partir del dataset considerado, **hemos tratado los datos y hecho un estudio de cada una de las variables**. A su vez, **hemos relacionado cada una de éstas con la probabilidad de sufrir alguna enfermedad coronaria** obteniendo datos interesantes con las variables sex y thal.
 
-Hemos visto que la variable thal se distribuye de manera diferente según el género y que el valor 'fixed defect' toma un caracter significativo por lo que podría considerarse una variable importante a la hora de establecer futuras predicciones.
+Hemos visto que **la variable thal se distribuye de manera diferente según el género** y que **el valor 'fixed defect' toma un caracter significativo** por lo que podría considerarse una variable importante a la hora de establecer futuras predicciones.
+
+AL ser un DataSet muy centrado en la problemática de problemas coronarios puede servir de base para los analisis propuestos. SIn embargo seria interesante poder disponer de muestras con mayor tamaño para poder permitir estudios concretos sobre el impacto de los diferentes factores.
 
 # 7 Código: (Puntuación 2 ptos)
 Hay que adjuntar el código, preferiblemente en R, con el que se ha realizado la limpieza, análisis y representación de los datos.
 
-# Contribuciones Proyecto
+El codigo R y los comentarios sobre el se encuentran en los documento pdf y html adjuntos.
 
-| Contribuciones | Firma | (Si/No) |
-|-------|-------------|----|
-| Investigación previa | Almudena Caballero | SI |
-| Investigación previa | Angel A. Urbina | SI |
-| Redacción de las respuestas | Almudena Caballero | SI |
-| Redacción de las respuestas | Angel A. Urbina | SI |
-| Desarrollo código | Almudena Caballero | SI |
-| Desarrollo código | Angel A. Urbina | SI |
+
 
