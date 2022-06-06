@@ -50,8 +50,6 @@ equipo explicaran el desarrollo de la práctica, basándose en las preguntas del
 <h4>CODIGOS:</h4>
 <ul>
   <li><b>Tipologia_PRA02.Rmd</b> - Contiene todo el código R del proyecto desarrollado.(Formato R Markov)</li>
-  <li><b>Tipologia_PRA02.html</b> - Salida del archivo anterior en formato Web. (Formato html)</li>
-  <li><b>Tipologia_PRA02.pdf</b> - Salida del archivo anterior en formato visualizable. (Formato pdf).</li>
 </ul>
 
 <h4>FUENTES DE DATOS:</h4>
